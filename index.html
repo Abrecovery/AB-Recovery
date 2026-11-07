@@ -213,7 +213,52 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
   </section>
 </main>
 
-<!-- TESTIMONIALS -->
+<!-- CONTACT FORM (now comes first) -->
+<section class="sec" id="contact">
+  <div class="eyebrow">// Contact AB Recovery</div>
+  <h2 style="margin-bottom: 28px;">Was your vehicle stolen? Tell us what happened.</h2>
+
+  <form id="recoveryForm" class="form win pad">
+    <input type="hidden" name="_subject" value="NEW AB Recovery Lead - Main Site">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+      <div>
+        <label>Full Name</label>
+        <input name="name" required placeholder="John Doe">
+      </div>
+      <div>
+        <label>Phone</label>
+        <input name="phone" required placeholder="(714) ...">
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <label>Vehicle Year/Make/Model</label>
+        <input name="vehicle" required placeholder="2021 Toyota Camry">
+      </div>
+      <div>
+        <label>VIN / Police Report #</label>
+        <input name="vin_police_report" placeholder="Last 6 VIN or police report #">
+      </div>
+    </div>
+
+    <div>
+      <label>Last Seen / Message</label>
+      <textarea name="message" rows="3" placeholder="Tell us where and when the vehicle was last seen, and any other useful details."></textarea>
+    </div>
+
+    <button class="btn primary" style="margin-top:10px;width:100%" type="submit" id="submitBtn">
+      Send Recovery Request →
+    </button>
+
+    <p style="font-size:10px;color:var(--muted);margin-top:8px">
+      For stolen vehicle recovery enquiries. 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805 | LA / Long Beach / Anaheim
+    </p>
+  </form>
+</section>
+
+<!-- TESTIMONIALS (now comes after the form) -->
 <section class="testimonials">
   <div class="section-header">
     <div class="eyebrow" style="justify-content:center">// REAL CLIENT STORIES</div>
@@ -258,52 +303,6 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
       </div>
     </article>
   </div>
-</section>
-
-<!-- CONTACT -->
-<section class="sec" id="contact">
-  <div class="eyebrow">// Contact AB Recovery</div>
-  <h2 style="margin-bottom: 28px;">Was your vehicle stolen? Tell us what happened.</h2>
-
-  <form id="recoveryForm" class="form win pad">
-    
-    <input type="hidden" name="_subject" value="NEW AB Recovery Lead - Main Site">
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-      <div>
-        <label>Full Name</label>
-        <input name="name" required placeholder="John Doe">
-      </div>
-      <div>
-        <label>Phone</label>
-        <input name="phone" required placeholder="(714) ...">
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div>
-        <label>Vehicle Year/Make/Model</label>
-        <input name="vehicle" required placeholder="2021 Toyota Camry">
-      </div>
-      <div>
-        <label>VIN / Police Report #</label>
-        <input name="vin_police_report" placeholder="Last 6 VIN or police report #">
-      </div>
-    </div>
-
-    <div>
-      <label>Last Seen / Message</label>
-      <textarea name="message" rows="3" placeholder="Tell us where and when the vehicle was last seen, and any other useful details."></textarea>
-    </div>
-
-    <button class="btn primary" style="margin-top:10px;width:100%" type="submit" id="submitBtn">
-      Send Recovery Request →
-    </button>
-
-    <p style="font-size:10px;color:var(--muted);margin-top:8px">
-      For stolen vehicle recovery enquiries. 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805 | LA / Long Beach / Anaheim
-    </p>
-  </form>
 </section>
 
 <footer>
