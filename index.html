@@ -23,13 +23,19 @@
 .map-badge{position:absolute;font:9px ui-monospace;font-weight:900;padding:4px 8px;border-radius:6px;border:1px solid;background:#0f2818;color:#22e39a;letter-spacing:.5px;box-shadow:0 0 12px #22e39a55;z-index:2}
 .map-drivers{position:absolute;right:0;top:0;bottom:0;width:155px;background:rgba(10,18,40,.92);border-left:1px solid #1e2a4a;padding:10px;font-size:10px;color:#8a90a8;z-index:2}
 .sec{max-width:1200px;margin:36px auto;padding:0 18px}.rows{display:grid;gap:10px;margin-top:20px}.srow{display:grid;grid-template-columns:70px 140px 1fr 1fr;gap:12px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;font-size:12px}.form input,.form select,.form textarea{width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);background:#0b1020;color:#fff;margin-top:8px;font-size:16px}.form label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
-footer{padding:24px 18px;color:var(--muted);font-size:11px;border-top:1px solid var(--line);margin-top:28px}
+footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:28px;background:rgba(11,16,32,.6)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+.footer-brand{font-weight:900;color:#fff;font-size:14px;margin-bottom:6px}
+.footer-contact{line-height:1.8}
+.footer-contact a{color:var(--cyan);text-decoration:none}
+.footer-contact a:hover{text-decoration:underline}
 @media(max-width:900px){
   .chap{grid-template-columns:1fr;padding:30px 0}
   h1,h2{font-size:26px !important;line-height:1.1}
   .srow{grid-template-columns:1fr}
   #isomap{height:300px}
   .map-drivers{width:110px}
+  .footer-inner{flex-direction:column;gap:16px}
 }
 </style>
 </head>
@@ -46,9 +52,7 @@ footer{padding:24px 18px;color:var(--muted);font-size:11px;border-top:1px solid 
 <div class="eyebrow">// 174 W LINCOLN AVE, ANAHEIM, CA — LA / LONG BEACH / ANAHEIM</div>
 <h1>Your car was stolen?<br><em style="color:var(--cyan)">We find it. Documented at every step.</em></h1>
 <p class="lede">Stolen vehicle recovery for vehicle owners across the LA Basin, with clear communication and documented recovery steps.</p>
-
 <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="#contact">Report Stolen Vehicle →</a><a class="btn" href="stolen-recovery.html">How Recovery Works →</a></div>
-
 <div style="margin-top:10px;font-size:10px;color:var(--muted)">✓ Licensed & Insured CA ✓ Police notification included ✓ 174 W Lincoln Ave, Anaheim ✓ LA / Long Beach / Anaheim</div>
 </div>
 <div class="win"><div class="tb"><span class="app">ABR SYSTEM</span> Recovery Activity <span class="chip r" style="margin-left:auto">● STOLEN VEHICLES</span></div><div class="pad"><div class="row2"><span>2021 Camry - Stolen - Anaheim - ABR-48213</span><span class="chip g">Recovered 14 hrs</span></div><div class="row2"><span>2019 Accord - Stolen - Long Beach</span><span class="chip c">● Tracking</span></div><div class="row2"><span>2022 Kia - Stolen - Anaheim</span><span class="chip c">● Field Team En Route</span></div></div></div>
@@ -58,10 +62,8 @@ footer{padding:24px 18px;color:var(--muted);font-size:11px;border-top:1px solid 
 <section class="sec" id="contact">
 <div class="eyebrow" style="color:var(--cyan)">// Contact AB Recovery</div><h2>Was your vehicle stolen? Tell us what happened.</h2>
 <form class="form win pad" action="https://formspree.io/f/mgaabyrg" method="POST">
-
 <input type="hidden" name="_subject" value="NEW AB Recovery Lead - Main Site">
 <input type="hidden" name="_next" value="thank-you.html">
-
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px"><div><label>Full Name</label><input name="name" required placeholder="John Doe"></div><div><label>Phone</label><input name="phone" required placeholder="(714) ..."></div></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><label>Vehicle Year/Make/Model</label><input name="vehicle" required placeholder="2021 Toyota Camry"></div><div><label>VIN / Police Report #</label><input name="vin_police_report" placeholder="Last 6 VIN or police report #"></div></div>
 <div><label>Last Seen / Message</label><textarea name="message" rows="3" placeholder="Tell us where and when the vehicle was last seen, and any other useful details."></textarea></div>
@@ -70,5 +72,18 @@ footer{padding:24px 18px;color:var(--muted);font-size:11px;border-top:1px solid 
 </form>
 </section>
 
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">AB RECOVERY</div>
+      <div>Stolen Vehicle Recovery • Anaheim / LA / Long Beach</div>
+    </div>
+    <div class="footer-contact">
+      <div><strong>Phone:</strong> <a href="tel:+12026179091">+1 (202) 617-9091</a></div>
+      <div><strong>Email:</strong> <a href="mailto:abrecovers@gamail.com">abrecovers@gamail.com</a></div>
+      <div><strong>Address:</strong> 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805</div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
