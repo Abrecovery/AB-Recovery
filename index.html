@@ -86,7 +86,7 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
 .footer-contact a{color:var(--blue);text-decoration:none}
 .footer-contact a:hover{text-decoration:underline}
 
-/* ===== WhatsApp Floating Button ===== */
+/* WhatsApp Floating Button */
 .whatsapp-float {
   position: fixed;
   bottom: 24px;
@@ -112,6 +112,50 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
   width: 32px;
   height: 32px;
   fill: white;
+}
+
+/* Success Popup */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.popup-overlay.show {
+  display: flex;
+}
+.popup {
+  background: white;
+  padding: 32px 28px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+.popup h3 {
+  color: var(--blue-dark);
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.popup p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+.popup button {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 @media(max-width:900px){
@@ -220,23 +264,44 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
 <section class="sec" id="contact">
   <div class="eyebrow">// Contact AB Recovery</div>
   <h2>Was your vehicle stolen? Tell us what happened.</h2>
-  <form class="form win pad" action="https://formspree.io/f/mgaabyrg" method="POST">
+
+  <form id="recoveryForm" class="form win pad">
     <input type="hidden" name="_subject" value="NEW AB Recovery Lead - Main Site">
-    <input type="hidden" name="_next" value="thank-you.html">
+
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-      <div><label>Full Name</label><input name="name" required placeholder="John Doe"></div>
-      <div><label>Phone</label><input name="phone" required placeholder="(714) ..."></div>
+      <div>
+        <label>Full Name</label>
+        <input name="name" required placeholder="John Doe">
+      </div>
+      <div>
+        <label>Phone</label>
+        <input name="phone" required placeholder="(714) ...">
+      </div>
     </div>
+
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div><label>Vehicle Year/Make/Model</label><input name="vehicle" required placeholder="2021 Toyota Camry"></div>
-      <div><label>VIN / Police Report #</label><input name="vin_police_report" placeholder="Last 6 VIN or police report #"></div>
+      <div>
+        <label>Vehicle Year/Make/Model</label>
+        <input name="vehicle" required placeholder="2021 Toyota Camry">
+      </div>
+      <div>
+        <label>VIN / Police Report #</label>
+        <input name="vin_police_report" placeholder="Last 6 VIN or police report #">
+      </div>
     </div>
+
     <div>
       <label>Last Seen / Message</label>
       <textarea name="message" rows="3" placeholder="Tell us where and when the vehicle was last seen, and any other useful details."></textarea>
     </div>
-    <button class="btn primary" style="margin-top:10px;width:100%" type="submit">Send Recovery Request →</button>
-    <p style="font-size:10px;color:var(--muted);margin-top:8px">For stolen vehicle recovery enquiries. 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805 | LA / Long Beach / Anaheim</p>
+
+    <button class="btn primary" style="margin-top:10px;width:100%" type="submit" id="submitBtn">
+      Send Recovery Request →
+    </button>
+
+    <p style="font-size:10px;color:var(--muted);margin-top:8px">
+      For stolen vehicle recovery enquiries. 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805 | LA / Long Beach / Anaheim
+    </p>
   </form>
 </section>
 
@@ -261,6 +326,15 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
   </svg>
 </a>
 
+<!-- Success Popup -->
+<div class="popup-overlay" id="successPopup">
+  <div class="popup">
+    <h3>Request Submitted</h3>
+    <p>Thank you. We’ve received your information and will contact you shortly.</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+</div>
+
 <script>
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -280,6 +354,46 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
       closeMenu();
     }
   });
+
+  // Form submission without Formspree redirect
+  const form = document.getElementById('recoveryForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successPopup = document.getElementById('successPopup');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mgaabyrg', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        successPopup.classList.add('show');
+      } else {
+        alert('Something went wrong. Please try again or call us directly.');
+      }
+    } catch (error) {
+      alert('Something went wrong. Please try again or call us directly.');
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Recovery Request →';
+  });
+
+  function closePopup() {
+    successPopup.classList.remove('show');
+  }
 </script>
 </body>
 </html>
