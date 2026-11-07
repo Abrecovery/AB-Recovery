@@ -1,0 +1,3 @@
+git mv 'client-1..jpg' 'client-1.jpg'
+git commit -m "Rename client image"
+git push
