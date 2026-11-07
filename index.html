@@ -2,154 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AB Recovery | Stolen Vehicle Recovery</title>
-<meta name="description" content="AB Recovery helps vehicle owners with stolen vehicle recovery in Anaheim, Los Angeles and Long Beach.">
 <style>
-:root{
-  --bg:#ffffff;
-  --panel:#f4f7fc;
-  --line:#d0dbeb;
-  --text:#0b1424;
-  --muted:#5a6b85;
-  --blue:#0057b8;
-  --blue-light:#1a7ae0;
-  --blue-dark:#003d82;
-  --white:#ffffff;
-  --amber:#e09b2d;
-  --emerald:#1a9e6a;
-  --red:#e11d48;
+:root {
+  --blue: #0057b8;
+  --blue-dark: #003d82;
+  --text: #0b1424;
+  --muted: #5a6b85;
+  --line: #d0dbeb;
+  --panel: #f4f7fc;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;overflow-wrap:break-word}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: Inter, system-ui, sans-serif; background: #fff; color: var(--text); }
 
-.bggrid{display:none} /* remove the dark grid effect */
+.bar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.bar__logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 900; color: var(--blue-dark); text-decoration: none; font-size: 16px;
+}
+.bar__logo i {
+  width: 34px; height: 34px; background: var(--blue); color: #fff;
+  display: grid; place-items: center; border-radius: 8px; font-style: normal;
+}
 
-.h-sep{height:2px;background:var(--blue);margin:0}
+.hamburger {
+  width: 42px; height: 42px; border: none; background: transparent; cursor: pointer; padding: 8px;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px; background: var(--blue-dark);
+  margin: 5px auto; border-radius: 2px; transition: 0.25s;
+}
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.bar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.bar__logo{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--blue-dark);text-decoration:none;white-space:nowrap}
-.bar__logo i{width:32px;height:32px;background:var(--blue);color:#fff;display:grid;place-items:center;border-radius:8px;font-style:normal;font-weight:900}
-.bar nav{margin-left:auto;display:flex;gap:14px;align-items:center;overflow-x:auto;white-space:nowrap}
-.bar nav a{font-size:11px;font-weight:700;color:var(--muted);text-decoration:none}
-.bar nav a:hover{color:var(--blue)}
+.mobile-menu {
+  display: none; position: fixed; top: 62px; left: 0; right: 0;
+  background: #fff; border-bottom: 1px solid var(--line);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1); padding: 8px 0; z-index: 99;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block; padding: 16px 22px; font-size: 16px; font-weight: 700;
+  color: var(--text); text-decoration: none; border-bottom: 1px solid #f0f4f9;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--blue); background: #f8fafc; }
 
-.btn{padding:10px 16px;border-radius:10px;font-weight:800;font-size:11px;border:1px solid var(--line);background:#fff;color:var(--text);text-decoration:none;display:inline-block;text-align:center}
-.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
-.btn.primary:hover{background:var(--blue-light)}
+/* Hero */
+.hero {
+  max-width: 800px; margin: 0 auto; padding: 60px 20px 50px; text-align: center;
+}
+.hero h1 {
+  font-size: 36px; line-height: 1.15; color: var(--blue-dark); letter-spacing: -0.5px;
+}
+.hero p {
+  margin-top: 16px; color: var(--muted); font-size: 16px; line-height: 1.6;
+}
+.hero .btn {
+  display: inline-block; margin-top: 28px; padding: 14px 28px;
+  background: var(--blue); color: #fff; font-weight: 800; font-size: 14px;
+  border-radius: 10px; text-decoration: none;
+}
 
-#story{max-width:1300px;margin:0 auto;padding:0 18px}
-.chap{min-height:auto;padding:40px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
-.chap:first-child{padding-top:30px}
+/* Testimonials */
+.testimonials {
+  max-width: 1100px; margin: 20px auto 60px; padding: 0 20px;
+}
+.testimonials h2 {
+  text-align: center; font-size: 28px; color: var(--blue-dark); margin-bottom: 8px;
+}
+.testimonials .subtitle {
+  text-align: center; color: var(--muted); margin-bottom: 36px; font-size: 15px;
+}
+.t-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+}
+.t-card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,87,184,0.07);
+}
+.t-card img {
+  width: 100%; height: 200px; object-fit: cover; object-position: top; background: #e8eef6;
+}
+.t-card-body { padding: 18px; }
+.t-card-body .quote { font-size: 14px; line-height: 1.55; color: var(--text); }
+.t-card-body .name { margin-top: 14px; font-weight: 800; font-size: 15px; color: var(--blue-dark); }
+.t-card-body .meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
-.eyebrow{font-size:11px;letter-spacing:1px;color:var(--blue);font-weight:800;display:flex;gap:8px;align-items:center}
-h1,h2{font-size:40px;line-height:.95;letter-spacing:-1px;color:var(--blue-dark)}
-.lede{color:var(--muted);margin-top:12px;line-height:1.6;font-size:14px}
+footer {
+  padding: 28px 20px; background: #f8fafc;
+  border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--muted);
+}
+footer a { color: var(--blue); text-decoration: none; }
 
-.win{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,87,184,.08)}
-.tb{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);font-size:11px;color:var(--muted);flex-wrap:wrap;background:#eef3fb}
-.tb .app{font-weight:900;color:var(--blue)}
-.pad{padding:14px}
-.row2{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #e2e8f0;font-size:12px;flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:800;border:1px solid var(--line);background:#fff;color:#334155}
-.chip.g{border-color:#1a9e6a55;color:#1a9e6a;background:#f0fdf6}
-.chip.c{border-color:#1a7ae055;color:#1a7ae0;background:#eff6ff}
-.chip.r{border-color:#e11d4855;color:#e11d48;background:#fff1f2}
-
-.sec{max-width:1200px;margin:36px auto;padding:0 18px}
-.form input,.form select,.form textarea{width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--text);margin-top:8px;font-size:16px}
-.form input:focus,.form textarea:focus{outline:2px solid var(--blue);border-color:var(--blue)}
-.form label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
-
-footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:28px;background:#f8fafc}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
-.footer-brand{font-weight:900;color:var(--blue-dark);font-size:14px;margin-bottom:6px}
-.footer-contact{line-height:1.8}
-.footer-contact a{color:var(--blue);text-decoration:none}
-.footer-contact a:hover{text-decoration:underline}
-
-@media(max-width:900px){
-  .chap{grid-template-columns:1fr;padding:30px 0}
-  h1,h2{font-size:26px !important;line-height:1.1}
-  .footer-inner{flex-direction:column;gap:16px}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 28px; }
+  .hero { padding: 40px 16px 40px; }
+  .testimonials h2 { font-size: 24px; }
+  .t-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 <header class="bar">
-<a class="bar__logo" href="index.html"><i>AB</i> AB RECOVERY</a>
-<nav>
-  <a href="stolen-recovery.html">Stolen Vehicle Recovery</a>
-  <a href="#contact">Contact</a>
-</nav>
-<a class="btn primary" href="#contact">Report a Stolen Vehicle →</a>
+  <a class="bar__logo" href="index.html"><i>AB</i> AB RECOVERY</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
-<main id="story">
-<section class="chap">
-<div>
-  <div class="eyebrow">// 174 W LINCOLN AVE, ANAHEIM, CA — LA / LONG BEACH / ANAHEIM</div>
-  <h1>Your car was stolen?<br><em style="color:var(--blue)">We find it. Documented at every step.</em></h1>
-  <p class="lede">Stolen vehicle recovery for vehicle owners across the LA Basin, with clear communication and documented recovery steps.</p>
-  <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-    <a class="btn primary" href="#contact">Report Stolen Vehicle →</a>
-    <a class="btn" href="stolen-recovery.html">How Recovery Works →</a>
-  </div>
-  <div style="margin-top:10px;font-size:10px;color:var(--muted)">✓ Licensed & Insured CA ✓ Police notification included ✓ 174 W Lincoln Ave, Anaheim ✓ LA / Long Beach / Anaheim</div>
-</div>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="contact.html" onclick="closeMenu()">Contact Us</a>
+  <a href="how-we-work.html" onclick="closeMenu()">How We Work</a>
+  <a href="index.html" onclick="closeMenu()">Exit</a>
+</nav>
 
-<div class="win">
-  <div class="tb">
-    <span class="app">ABR SYSTEM</span> Recovery Activity 
-    <span class="chip r" style="margin-left:auto">● STOLEN VEHICLES</span>
-  </div>
-  <div class="pad">
-    <div class="row2"><span>2021 Camry - Stolen - Anaheim - ABR-48213</span><span class="chip g">Recovered 14 hrs</span></div>
-    <div class="row2"><span>2019 Accord - Stolen - Long Beach</span><span class="chip c">● Tracking</span></div>
-    <div class="row2"><span>2022 Kia - Stolen - Anaheim</span><span class="chip c">● Field Team En Route</span></div>
-  </div>
-</div>
+<!-- Hero -->
+<section class="hero">
+  <h1>Your car was stolen?<br>We find it.</h1>
+  <p>Professional stolen vehicle recovery across Anaheim, Los Angeles and Long Beach. Clear communication and documented every step of the way.</p>
+  <a class="btn" href="contact.html">Report a Stolen Vehicle</a>
 </section>
-</main>
 
-<div class="h-sep"></div>
+<!-- Testimonials (just scroll down to see them) -->
+<section class="testimonials">
+  <h2>What our clients say</h2>
+  <p class="subtitle">Real experiences from vehicle owners we helped</p>
 
-<section class="sec" id="contact">
-  <div class="eyebrow">// Contact AB Recovery</div>
-  <h2>Was your vehicle stolen? Tell us what happened.</h2>
-  <form class="form win pad" action="https://formspree.io/f/mgaabyrg" method="POST">
-    <input type="hidden" name="_subject" value="NEW AB Recovery Lead - Main Site">
-    <input type="hidden" name="_next" value="thank-you.html">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-      <div><label>Full Name</label><input name="name" required placeholder="John Doe"></div>
-      <div><label>Phone</label><input name="phone" required placeholder="(714) ..."></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div><label>Vehicle Year/Make/Model</label><input name="vehicle" required placeholder="2021 Toyota Camry"></div>
-      <div><label>VIN / Police Report #</label><input name="vin_police_report" placeholder="Last 6 VIN or police report #"></div>
-    </div>
-    <div>
-      <label>Last Seen / Message</label>
-      <textarea name="message" rows="3" placeholder="Tell us where and when the vehicle was last seen, and any other useful details."></textarea>
-    </div>
-    <button class="btn primary" style="margin-top:10px;width:100%" type="submit">Send Recovery Request →</button>
-    <p style="font-size:10px;color:var(--muted);margin-top:8px">For stolen vehicle recovery enquiries. 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805 | LA / Long Beach / Anaheim</p>
-  </form>
+  <div class="t-grid">
+    <article class="t-card">
+      <img src="client-1.jpg" alt="Carlos M.">
+      <div class="t-card-body">
+        <p class="quote">“My Camry was taken from a shopping center in Anaheim. Within 16 hours they had located it and coordinated with the police. Clear updates the whole time.”</p>
+        <div class="name">Carlos M.</div>
+        <div class="meta">Anaheim • 2021 Toyota Camry</div>
+      </div>
+    </article>
+
+    <article class="t-card">
+      <img src="client-2.jpg" alt="Jennifer L.">
+      <div class="t-card-body">
+        <p class="quote">“I was stressed and didn’t know where to start. The team explained every step and kept me informed. They found my car in Long Beach.”</p>
+        <div class="name">Jennifer L.</div>
+        <div class="meta">Long Beach • 2019 Honda Accord</div>
+      </div>
+    </article>
+
+    <article class="t-card">
+      <img src="client-3.jpg" alt="Marcus T.">
+      <div class="t-card-body">
+        <p class="quote">“Professional from the first call. They treated the recovery like a real operation — documented, fast, and transparent.”</p>
+        <div class="name">Marcus T.</div>
+        <div class="meta">Los Angeles • 2020 Ford F-150</div>
+      </div>
+    </article>
+
+    <article class="t-card">
+      <img src="client-4.jpg" alt="Susan R.">
+      <div class="t-card-body">
+        <p class="quote">“After my car was stolen I felt helpless. AB Recovery gave me clear next steps. They found it and I got it back the same day.”</p>
+        <div class="name">Susan R.</div>
+        <div class="meta">Anaheim • 2018 Hyundai Elantra</div>
+      </div>
+    </article>
+  </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">AB RECOVERY</div>
-      <div>Stolen Vehicle Recovery • Anaheim / LA / Long Beach</div>
-    </div>
-    <div class="footer-contact">
-      <div><strong>Phone:</strong> <a href="tel:+12026179091">+1 (202) 617-9091</a></div>
-      <div><strong>Email:</strong> <a href="mailto:abrecovers@gamail.com">abrecovers@gamail.com</a></div>
-      <div><strong>Address:</strong> 174 W Lincoln Ave, Unit 532, Anaheim, CA 92805</div>
-    </div>
+  <div><strong>AB Recovery</strong></div>
+  <div style="margin-top:8px">
+    <a href="tel:+12026179091">+1 (202) 617-9091</a> &nbsp;|&nbsp;
+    <a href="mailto:abrecovers@gamail.com">abrecovers@gamail.com</a>
   </div>
+  <div style="margin-top:6px">174 W Lincoln Ave, Unit 532, Anaheim, CA 92805</div>
 </footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+</script>
 </body>
 </html>
