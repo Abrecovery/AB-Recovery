@@ -7,67 +7,66 @@
 <meta name="description" content="AB Recovery helps vehicle owners with stolen vehicle recovery in Anaheim, Los Angeles and Long Beach.">
 <style>
 :root{
-  --bg:#0b1424;
-  --panel:#12203a;
-  --line:#1e3258;
-  --text:#e8eef8;
-  --muted:#8b9bb8;
-  --blue:#0057b8;          /* main truck blue */
+  --bg:#ffffff;
+  --panel:#f4f7fc;
+  --line:#d0dbeb;
+  --text:#0b1424;
+  --muted:#5a6b85;
+  --blue:#0057b8;
   --blue-light:#1a7ae0;
-  --blue-glow:#0057b855;
+  --blue-dark:#003d82;
   --white:#ffffff;
-  --amber:#ffb03a;
-  --emerald:#22e39a;
-  --red:#ff2d55;
+  --amber:#e09b2d;
+  --emerald:#1a9e6a;
+  --red:#e11d48;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;overflow-wrap:break-word}
 
-.bggrid{position:fixed;inset:0;z-index:-1;pointer-events:none}
-.bggrid .sky{position:absolute;inset:0;background:radial-gradient(900px 450px at 50% -10%,#16305a 0%,#0b1424 60%)}
-.bggrid .floor{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(#0057b815 1px,transparent 1px),linear-gradient(90deg,#0057b815 1px,transparent 1px);background-size:60px 60px;transform:perspective(800px) rotateX(60deg) translateY(var(--gy,0));transform-origin:bottom}
+.bggrid{display:none} /* remove the dark grid effect */
 
-.h-sep{height:1px;background:var(--blue);box-shadow:0 0 20px var(--blue-glow);margin:0;opacity:.7}
+.h-sep{height:2px;background:var(--blue);margin:0}
 
-.bar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(11,20,36,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.bar__logo{display:flex;align-items:center;gap:10px;font-weight:900;color:#fff;text-decoration:none;white-space:nowrap}
+.bar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.bar__logo{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--blue-dark);text-decoration:none;white-space:nowrap}
 .bar__logo i{width:32px;height:32px;background:var(--blue);color:#fff;display:grid;place-items:center;border-radius:8px;font-style:normal;font-weight:900}
 .bar nav{margin-left:auto;display:flex;gap:14px;align-items:center;overflow-x:auto;white-space:nowrap}
 .bar nav a{font-size:11px;font-weight:700;color:var(--muted);text-decoration:none}
-.bar nav a:hover{color:var(--blue-light)}
+.bar nav a:hover{color:var(--blue)}
 
-.btn{padding:10px 16px;border-radius:10px;font-weight:800;font-size:11px;border:1px solid var(--line);background:#fff;color:#0b1424;text-decoration:none;display:inline-block;text-align:center}
+.btn{padding:10px 16px;border-radius:10px;font-weight:800;font-size:11px;border:1px solid var(--line);background:#fff;color:var(--text);text-decoration:none;display:inline-block;text-align:center}
 .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn.primary:hover{background:var(--blue-light)}
 
 #story{max-width:1300px;margin:0 auto;padding:0 18px}
-.chap{min-height:auto;padding:34px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
-.chap:first-child{padding-top:25px}
+.chap{min-height:auto;padding:40px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
+.chap:first-child{padding-top:30px}
 
-.eyebrow{font-size:11px;letter-spacing:1px;color:var(--blue-light);font-weight:800;display:flex;gap:8px;align-items:center}
-h1,h2{font-size:40px;line-height:.95;letter-spacing:-1px}
+.eyebrow{font-size:11px;letter-spacing:1px;color:var(--blue);font-weight:800;display:flex;gap:8px;align-items:center}
+h1,h2{font-size:40px;line-height:.95;letter-spacing:-1px;color:var(--blue-dark)}
 .lede{color:var(--muted);margin-top:12px;line-height:1.6;font-size:14px}
 
-.win{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.tb{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);font-size:11px;color:var(--muted);flex-wrap:wrap}
-.tb .app{font-weight:900;color:var(--blue-light)}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,87,184,.08)}
+.tb{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);font-size:11px;color:var(--muted);flex-wrap:wrap;background:#eef3fb}
+.tb .app{font-weight:900;color:var(--blue)}
 .pad{padding:14px}
-.row2{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #ffffff08;font-size:12px;flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:800;border:1px solid var(--line);background:#0f1c35;color:#cbd5e1}
-.chip.g{border-color:#22e39a55;color:#22e39a}
-.chip.c{border-color:#1a7ae055;color:#1a7ae0}
-.chip.r{border-color:#ff2d5555;color:#ff2d55}
+.row2{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #e2e8f0;font-size:12px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:800;border:1px solid var(--line);background:#fff;color:#334155}
+.chip.g{border-color:#1a9e6a55;color:#1a9e6a;background:#f0fdf6}
+.chip.c{border-color:#1a7ae055;color:#1a7ae0;background:#eff6ff}
+.chip.r{border-color:#e11d4855;color:#e11d48;background:#fff1f2}
 
 .sec{max-width:1200px;margin:36px auto;padding:0 18px}
-.form input,.form select,.form textarea{width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);background:#0b1424;color:#fff;margin-top:8px;font-size:16px}
+.form input,.form select,.form textarea{width:100%;padding:14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--text);margin-top:8px;font-size:16px}
+.form input:focus,.form textarea:focus{outline:2px solid var(--blue);border-color:var(--blue)}
 .form label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
 
-footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:28px;background:rgba(11,20,36,.7)}
+footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);margin-top:28px;background:#f8fafc}
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
-.footer-brand{font-weight:900;color:#fff;font-size:14px;margin-bottom:6px}
+.footer-brand{font-weight:900;color:var(--blue-dark);font-size:14px;margin-bottom:6px}
 .footer-contact{line-height:1.8}
-.footer-contact a{color:var(--blue-light);text-decoration:none}
+.footer-contact a{color:var(--blue);text-decoration:none}
 .footer-contact a:hover{text-decoration:underline}
 
 @media(max-width:900px){
@@ -78,7 +77,6 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
 </style>
 </head>
 <body>
-<div class="bggrid"><div class="sky"></div><div class="floor" id="floor"></div></div>
 <header class="bar">
 <a class="bar__logo" href="index.html"><i>AB</i> AB RECOVERY</a>
 <nav>
@@ -89,10 +87,10 @@ footer{padding:28px 18px;color:var(--muted);font-size:12px;border-top:1px solid 
 </header>
 
 <main id="story">
-<section class="chap play">
+<section class="chap">
 <div>
   <div class="eyebrow">// 174 W LINCOLN AVE, ANAHEIM, CA — LA / LONG BEACH / ANAHEIM</div>
-  <h1>Your car was stolen?<br><em style="color:var(--blue-light)">We find it. Documented at every step.</em></h1>
+  <h1>Your car was stolen?<br><em style="color:var(--blue)">We find it. Documented at every step.</em></h1>
   <p class="lede">Stolen vehicle recovery for vehicle owners across the LA Basin, with clear communication and documented recovery steps.</p>
   <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
     <a class="btn primary" href="#contact">Report Stolen Vehicle →</a>
